@@ -11,55 +11,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PhoneApp_Switch {
+public class PhoneApp_If {
 
 	public static void main(String[] args) throws IOException {
 
-		Reader fr = new FileReader("C:\\Users\\Hi-PC\\Desktop\\JavaStudy\\file\\PhoneDB.txt");
+		Reader fr = new FileReader("C:\\Users\\Hi-PC\\Desktop\\JavaStudy\\file\\PhoneDB_Plus.txt");
 		BufferedReader br = new BufferedReader(fr);
+
+		Scanner sc = new Scanner(System.in);
 
 		List<Person> pList = new ArrayList<Person>();
 
-		Scanner sc = new Scanner(System.in);
-		boolean flag = false;
 		String line = "";
 
 		while (true) {
 
+			line = br.readLine();
+			if (line == null) {
+				break;
+			}
+
+			String[] pInfo = line.split(",");
+
+			String name = pInfo[0];
+			String hp = pInfo[1];
+			String company = pInfo[2];
+
+			Person person = new Person(name, hp, company);
+
+			pList.add(person);
+		}
+
+		while (true) {
 			System.out.println("*******************************");
 			System.out.println("*      전화번호 관리 프로그램      *");
 			System.out.println("*******************************");
 			System.out.println("");
-
 			while (true) {
-
 				System.out.println("1.리스트 2.등록 3.삭제 4.검색 5.종료");
 				System.out.println("-------------------------------");
 				System.out.print(">메뉴번호: ");
 				int num = sc.nextInt();
 
-				switch (num) {
-
-				case 1:
-
-					while (true) {
-
-						line = br.readLine();
-						if (line == null) {
-							break;
-						}
-
-						String[] pInfo = line.split(",");
-
-						String name = pInfo[0];
-						String hp = pInfo[1];
-						String company = pInfo[2];
-
-						Person person = new Person(name, hp, company);
-
-						pList.add(person);
-					}
-
+				if (num == 5) {
+					break;
+				} else if (num == 1) {
 					System.out.println("<1. 리스트>");
 
 					for (int i = 0; i < pList.size(); i++) {
@@ -69,11 +65,7 @@ public class PhoneApp_Switch {
 					}
 
 					System.out.println("");
-
-					break;
-
-				case 2:
-
+				} else if (num == 2) {
 					System.out.println("<2. 등록>");
 
 					System.out.print(">이름: ");
@@ -88,11 +80,7 @@ public class PhoneApp_Switch {
 					pList.add(person);
 
 					System.out.println("");
-
-					break;
-
-				case 3:
-
+				} else if (num == 3) {
 					System.out.println("<3. 삭제>");
 					System.out.print(">번호 :");
 					int lNum = sc.nextInt();
@@ -101,11 +89,7 @@ public class PhoneApp_Switch {
 					System.out.println("[삭제되었습니다]");
 
 					System.out.println("");
-
-					break;
-
-				case 4:
-
+				} else if (num == 4) {
 					System.out.println("<4. 검색>");
 					System.out.print(">검색 :");
 					String search = sc.next();
@@ -119,20 +103,9 @@ public class PhoneApp_Switch {
 
 					System.out.println("");
 
-					break;
-
-				case 5:
-					flag = true;
-					break;
-
-				default:
+				} else {
 					System.out.println("[다시 입력해주세요]");
 					System.out.println("");
-					break;
-
-				}
-				if (flag == true) {
-					break;
 				}
 			}
 			System.out.println("");
@@ -142,8 +115,7 @@ public class PhoneApp_Switch {
 			System.out.println("");
 			break;
 		}
-
-		Writer fw = new FileWriter("C:\\Users\\Hi-PC\\Desktop\\JavaStudy\\file\\PhoneDB.txt");
+		Writer fw = new FileWriter("C:\\Users\\Hi-PC\\Desktop\\JavaStudy\\file\\PhoneDB_Plus.txt");
 		BufferedWriter bw = new BufferedWriter(fw);
 
 		for (int i = 0; i < pList.size(); i++) {
