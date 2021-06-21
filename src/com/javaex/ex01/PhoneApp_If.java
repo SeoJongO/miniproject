@@ -79,6 +79,7 @@ public class PhoneApp_If {
 
 					pList.add(person);
 
+					System.out.println("[등록되었습니다}");
 					System.out.println("");
 				} else if (num == 3) {
 					System.out.println("<3. 삭제>");

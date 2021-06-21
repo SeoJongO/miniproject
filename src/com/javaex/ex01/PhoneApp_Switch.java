@@ -86,7 +86,8 @@ public class PhoneApp_Switch {
 					Person person = new Person(name, hp, company);
 
 					pList.add(person);
-
+					
+					System.out.println("[등록되었습니다}");
 					System.out.println("");
 
 					break;
